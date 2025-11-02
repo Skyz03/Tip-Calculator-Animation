@@ -17,7 +17,7 @@ export default function TipCalculator() {
       />
       {errors.bill && <span>Please enter a valid bill</span>}
 
-      <label>Select Tip %:</label>
+      <label>Select Tip %</label>
       <input
         type="number"
         placeholder="Tip %"
