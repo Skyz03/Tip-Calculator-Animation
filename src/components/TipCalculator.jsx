@@ -8,7 +8,7 @@ export default function TipCalculator() {
   };
 
   return (
-    <div className="bg-white text-black rounded-2xl p-4">
+    <div className="flex flex-col md:flex-row gap-6 w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px]  bg-white text-black rounded-2xl p-4 ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Bill Amount:</label>
         <input
@@ -17,15 +17,14 @@ export default function TipCalculator() {
           {...register("bill", { required: true, min: 1 })}
         />
         {errors.bill && <span>Please enter a valid bill</span>}
-
         <label>Select Tip %</label>
         <input
           type="number"
           placeholder="Tip %"
           {...register("tip", { required: true })}
         />
+       
         {errors.tip && <span>Select tip percentage</span>}
-
         <label>Number of People:</label>
         <input
           type="number"
@@ -36,6 +35,10 @@ export default function TipCalculator() {
 
         <button type="submit">Calculate</button>
       </form>
+      {/* result of tip calculator */}
+      <div>
+        <h1>Here resulte should be display</h1>
+      </div>
     </div>
 
   );
