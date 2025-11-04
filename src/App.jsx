@@ -8,10 +8,8 @@ export default function App() {
  text-white p-4">
       <TipCalculator />
     </div>
-
   )
 }
-
 
 // - Green 900: hsl(183, 100%, 15%)
 // - Grey 500: hsl(186, 14%, 43%)

@@ -12,8 +12,10 @@ export default function TipCalculator() {
   } = useForm();
   const onSubmit = (data) => {
     const tip = selectedTip !== null ? selectedTip : Number(data.customTip) || 0;
-
-    console.log(`user data: ${data}`);
+    console.log("Bill:", data.bill);
+    console.log("Custom Tip:", tip);
+    console.log("People:", data.people);
+    console.log("Selected Tip:", selectedTip);
   };
   const tipOptions = [5, 10, 15, 25, 50];
 
@@ -28,23 +30,23 @@ export default function TipCalculator() {
           {...register("bill", { required: true, min: 1 })}
         />
         {errors.bill && <span>Please enter a valid bill  </span>}
-
         {/* Tip Select Buttons */}
         <label className="block text-sm font-semibold">Select Tip %</label>
         <div className="grid grid-cols-3 gap-2 my-3">
           {tipOptions.map((tip) => (
             <button
-            // 
+
               key={tip}
               type="button"
               className={`p-2 rounded font-bold ${selectedTip === tip
-                ? "bg-[hsl(160,73%,28%)] text-white"
+                ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
                 : "bg-[hsl(183,100%,15%)] text-white hover:bg-gray-900"
                 }`}
               onClick={() => {
                 setSelectedTip(tip);
               }}
             >
+
               {tip}%
             </button>
           ))}
@@ -56,8 +58,7 @@ export default function TipCalculator() {
             className="p-2 border rounded text-center"
             onFocus={() => setSelectedTip(null)}
           />
-          {/*section fr */}
-          {/**/}
+
         </div>
 
         <label>Number of People:</label>
