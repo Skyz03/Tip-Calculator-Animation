@@ -26,9 +26,9 @@ export default function TipCalculator() {
     <div className="flex flex-col md:flex-row gap-6 w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px]  bg-white text-black rounded-2xl p-4 ">
 
       <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-1/2">
-        <div className="min-w-full">
-          <label className="text-sm text-gray-600 font-semibold">Bill Amount  :</label>
-          <div className="relative mt-1 mb-4">
+        <div className="min-w-full  mb-8">
+          <label className="text-sm text-gray-600 font-semibold">Bill</label>
+          <div className="relative mt-1">
             <img src={dollarIcon} alt="doller_Icon"
               className="absolute left-4 top-1/2 -translate-y-1/2 w-3"
             />
@@ -44,33 +44,36 @@ export default function TipCalculator() {
         </div>
 
         {/* Tip Select Buttons */}
-        <label className="block text-sm font-semibold">Select Tip %</label>
-        <div className="grid grid-cols-3 gap-3 my-3">
-          {tipOptions.map((tip) => (
-            <button
-              key={tip}
-              type="button"
-              className={`p-2 rounded cursor-pointer font-bold ${selectedTip === tip
-                ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
-                : "bg-[hsl(183,100%,15%)] text-white hover:bg-[rgb(38_192_171_/50%)] hover:text-[rgb(0,73,77)]"
-                }`}
-              onClick={() => {
-                setSelectedTip(tip);
-              }}
-            >
-              {tip}%
-            </button>
-          ))}
-          {/* Custom Tip */}
-          <input
-            type="number"
-            {...register("customTip")}
-            placeholder="Custom"
-            className="p-2 border rounded font-700 text-[rgb(0,73,77)] text-center appearance-none"
-            onFocus={() => setSelectedTip(null)}
-          />
+        <div className="mb-8">
+          <label className="block text-sm font-semibold">Select Tip %</label>
+          <div className="grid grid-cols-3 gap-3 my-3">
+            {tipOptions.map((tip) => (
+              <button
+                key={tip}
+                type="button"
+                className={`p-2 rounded cursor-pointer font-bold ${selectedTip === tip
+                  ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
+                  : "bg-[hsl(183,100%,15%)] text-white hover:bg-[rgb(38_192_171_/50%)] hover:text-[rgb(0,73,77)]"
+                  }`}
+                onClick={() => {
+                  setSelectedTip(tip);
+                }}
+              >
+                {tip}%
+              </button>
+            ))}
+            {/* Custom Tip */}
+            <input
+              type="number"
+              {...register("customTip")}
+              placeholder="Custom"
+              className="p-2 border rounded font-700 text-[rgb(0,73,77)] text-center appearance-none"
+              onFocus={() => setSelectedTip(null)}
+            />
 
+          </div>
         </div>
+
 
         <label>Number of People:</label>
         <img src={iconPerson} alt="personIcon"
