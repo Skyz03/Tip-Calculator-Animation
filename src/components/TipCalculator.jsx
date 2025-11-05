@@ -35,7 +35,7 @@ export default function TipCalculator() {
             />
             <input
               type="number"
-              className="w-full bg-[hsl(189,41%,97%)] p-3 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]"
+              className="w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]"
               placeholder="Enter bill"
               {...register("bill", { required: true, min: 1 })}
             />
@@ -46,7 +46,7 @@ export default function TipCalculator() {
 
         {/* Tip Select Buttons section */}
         <section className="mb-8">
-          <label className="block text-sm font-semibold">Select Tip %</label>
+          <label  className="text-sm text-gray-600 font-semibold">Select Tip %</label>
           <div className="grid grid-cols-3 gap-3 my-3">
             {tipOptions.map((tip) => (
               <button
@@ -77,13 +77,13 @@ export default function TipCalculator() {
 
         {/* Number of People section */}
         <section className="mb-8">
-          <label>Number of People:</label>
-          <div className="relative">
+          <label  className="text-sm text-gray-600 font-semibold">Number of People</label>
+          <div className="relative mt-1">
             <img src={iconPerson} alt="personIcon"
               className="absolute left-4 top-1/2 -translate-y-1/2 w-3" />
             <input
               type="number"
-              className="w-full bg-[hsl(189,41%,97%)] p-3 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]"
+              className="w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]"
               placeholder="People count"
               {...register("people", { required: true, min: 1 })}
             />
