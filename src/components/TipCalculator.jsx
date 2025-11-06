@@ -35,8 +35,8 @@ export default function TipCalculator() {
             />
             <input
               type="number"
-              className="w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]"
-              placeholder="Enter bill"
+              className="w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-1 focus:ring-[hsl(172,67%,45%)]"
+              placeholder="0"
               {...register("bill", { required: true, min: 1 })}
             />
           </div>
@@ -83,8 +83,8 @@ export default function TipCalculator() {
               className="absolute left-4 top-1/2 -translate-y-1/2 w-3" />
             <input
               type="number"
-              className="w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]"
-              placeholder="People count"
+              className="w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-1 focus:ring-[hsl(172,67%,45%)]"
+              placeholder="0"
               {...register("people", { required: true, min: 1 })}
             />
           </div>
