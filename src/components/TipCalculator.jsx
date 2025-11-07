@@ -104,6 +104,7 @@ export default function TipCalculator() {
               <p>/ person</p>
             </div>
             <div>0.00</div>
+            {/*  */}
           </div>
           <div className="flex justify-between mb-8 ">
             <div>
@@ -115,7 +116,7 @@ export default function TipCalculator() {
 
 
         </div>
-        <button className="bg-red-200 ">RESET</button>
+        <button className="bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] font-bold rounded cursor-pointer p-2">RESET</button>
       </div>
     </div>
   );
