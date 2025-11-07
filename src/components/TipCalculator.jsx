@@ -28,7 +28,7 @@ export default function TipCalculator() {
       <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-1/2">
         {/* Bill seciton*/}
         <section className="min-w-full  mb-8">
-          <label className="text-sm text-gray-600 font-semibold">Bill</label>
+          <label className="text-sm text-[hsl(186,14%,43%)] font-semibold">Bill</label>
           <div className="relative mt-1">
             <img src={dollarIcon} alt="doller_Icon"
               className="absolute left-4 top-1/2 -translate-y-1/2 w-3"
@@ -46,7 +46,7 @@ export default function TipCalculator() {
 
         {/* Tip Select Buttons section */}
         <section className="mb-8">
-          <label  className="text-sm text-gray-600 font-semibold">Select Tip %</label>
+          <label  className="text-sm text-[hsl(186,14%,43%)] font-semibold">Select Tip %</label>
           <div className="grid grid-cols-3 gap-3 my-3">
             {tipOptions.map((tip) => (
               <button
@@ -68,16 +68,17 @@ export default function TipCalculator() {
               type="number"
               {...register("customTip")}
               placeholder="Custom"
-              className="p-2 border rounded font-700 text-[rgb(0,73,77)] text-center appearance-none"
+              className="p-2 rounded font-bold text-[hsl(183,100%,15%)]  text-center appearance-none outline-none focus:ring-1 focus:ring-[hsl(172,67%,45%)]"
               onFocus={() => setSelectedTip(null)}
             />
+
 
           </div>
         </section>
 
         {/* Number of People section */}
         <section className="mb-8">
-          <label  className="text-sm text-gray-600 font-semibold">Number of People</label>
+          <label  className="text-sm text-[hsl(186,14%,43%)] font-semibold">Number of People</label>
           <div className="relative mt-1">
             <img src={iconPerson} alt="personIcon"
               className="absolute left-4 top-1/2 -translate-y-1/2 w-3" />
@@ -87,22 +88,15 @@ export default function TipCalculator() {
               placeholder="0"
               {...register("people", { required: true, min: 1 })}
             />
+            {/*  */}
           </div>
           {errors.people && <span className="text-red-500 text-xs">Enter number of people</span>}
         </section>
-
-
-        <button type="submit">Calculate</button>
+        <button type="submit">Calculate. </button>
       </form>
-
-
-
-
-
-
       {/* result of tip calculator */}
       <div className="w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-4 rounded-xl">
-        <h1>Here resulte should be display</h1>
+        <h1>Here resulte should be display. </h1>
       </div>
     </div>
   );
