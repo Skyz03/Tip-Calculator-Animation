@@ -23,11 +23,11 @@ export default function TipCalculator() {
   const tipOptions = [5, 10, 15, 25, 50];
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px]  bg-white text-black rounded-2xl p-4 ">
+    <div className="flex flex-col md:flex-row gap-8 w-full max-w-[500px] sm:max-w-[600px] md:max-w-[700px]  bg-white text-black rounded-3xl p-7 pl-8 pr-8 ">
 
       <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-1/2">
         {/* Bill seciton*/}
-        <section className="min-w-full  mb-8">
+        <div className="min-w-full mb-8">
           <label className="text-sm text-[hsl(186,14%,43%)] font-semibold">Bill</label>
           <div className="relative mt-1">
             <img src={dollarIcon} alt="doller_Icon"
@@ -42,11 +42,11 @@ export default function TipCalculator() {
           </div>
 
           {errors.bill && <span className="text-red-500 text-xs">Enter valid bill</span>}
-        </section>
+        </div>
 
         {/* Tip Select Buttons section */}
-        <section className="mb-8">
-          <label  className="text-sm text-[hsl(186,14%,43%)] font-semibold">Select Tip %</label>
+        <div className="mb-8">
+          <label className="text-sm text-[hsl(186,14%,43%)] font-semibold">Select Tip %</label>
           <div className="grid grid-cols-3 gap-3 my-3">
             {tipOptions.map((tip) => (
               <button
@@ -74,11 +74,11 @@ export default function TipCalculator() {
 
 
           </div>
-        </section>
+        </div>
 
         {/* Number of People section */}
-        <section className="mb-8">
-          <label  className="text-sm text-[hsl(186,14%,43%)] font-semibold">Number of People</label>
+        <div className="mb-8">
+          <label className="text-sm text-[hsl(186,14%,43%)] font-semibold">Number of People</label>
           <div className="relative mt-1">
             <img src={iconPerson} alt="personIcon"
               className="absolute left-4 top-1/2 -translate-y-1/2 w-3" />
@@ -91,12 +91,31 @@ export default function TipCalculator() {
             {/*  */}
           </div>
           {errors.people && <span className="text-red-500 text-xs">Enter number of people</span>}
-        </section>
+        </div>
         <button type="submit">Calculate. </button>
       </form>
       {/* result of tip calculator */}
-      <div className="w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-4 rounded-xl">
-        <h1>Here resulte should be display. </h1>
+      <div className="flex flex-col justify-between w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-8 rounded-xl">
+        <div>
+
+          <div className="flex justify-between mb-8 ">
+            <div>
+              <p>Tip Amount</p>
+              <p>/ person</p>
+            </div>
+            <div>0.00</div>
+          </div>
+          <div className="flex justify-between mb-8 ">
+            <div>
+              <p>Tip Amount</p>
+              <p>/ person</p>
+            </div>
+            <div>0.00</div>
+          </div>
+
+
+        </div>
+        <button className="bg-red-200 ">RESET</button>
       </div>
     </div>
   );
