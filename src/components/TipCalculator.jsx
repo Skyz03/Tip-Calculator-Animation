@@ -21,7 +21,7 @@ export default function TipCalculator() {
     console.log("People:", data.people);
     console.log("Selected Tip:", selectedTip);
   };
-  
+
   return (
     <div className="flex flex-col md:flex-row gap-8 w-full max-w-[500px] sm:max-w-[600px] md:max-w-[700px]  bg-white text-black rounded-3xl p-7 pl-8 pr-8 ">
       <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-1/2">
@@ -64,24 +64,12 @@ export default function TipCalculator() {
       {/* result of tip calculator */}
       <div className="flex flex-col justify-between w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-8 rounded-xl">
         <div>
-
-          <div className="flex justify-between mb-8 ">
-            <div>
-              <p>Tip Amount</p>
-              <p>/ person</p>
-            </div>
-            <div>0.00</div>
-            {/*  */}
-          </div>
-          <div className="flex justify-between mb-8 ">
-            <div>
-              <p>Tip Amount</p>
-              <p>/ person</p>
-            </div>
-            <div>0.00</div>
-          </div>
-
-
+          <ResultRow
+            label={"Tip Amount"}
+            value={3} />
+          <ResultRow
+            label={"Total"}
+            value={5} />
         </div>
         <button className="bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] font-bold rounded cursor-pointer p-2">RESET</button>
       </div>
