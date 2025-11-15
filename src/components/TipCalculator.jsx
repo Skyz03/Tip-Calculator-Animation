@@ -30,6 +30,7 @@ export default function TipCalculator() {
           label={"Bill"}
           icon={dollarIcon}
           register={register("bill", { required: true, min: 1 })}
+          error={errors.bill}
         />
         {/* Tip Select Buttons section */}
         <div className="mb-8">
@@ -57,6 +58,7 @@ export default function TipCalculator() {
           label={"Number of People"}
           icon={personIcon}
           register={register("people", { required: true, min: 1 })}
+          error={errors.people}
         />
 
         <button type="submit">Calculate. </button>
