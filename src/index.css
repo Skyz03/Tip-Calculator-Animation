@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-asimovian: "Asimovian", sans-serif;
+}
+
+
 /* Remove number input arrows in Chrome, Safari, Edge */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

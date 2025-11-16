@@ -72,7 +72,10 @@ export default function TipCalculator() {
               {...register("customTip")}
               placeholder='Custom'
               onFocus={() => setSelectedTip(null)}
-              className='p-2 rounded font-bold text-[hsl(183,100%,15%)] text-center bg-[hsl(189,41%,97%)] outline-none focus:ring-1 focus:ring-[hsl(172,67%,45%)]'
+              className='p-3 text-lg tracking-wide rounded-md font-bold 
+             text-[hsl(183,100%,15%)] text-center 
+             bg-[hsl(189,41%,97%)] outline-none 
+             focus:ring-2 focus:ring-[hsl(172,67%,45%)]'
             />
           </div>
         </div>
@@ -87,7 +90,8 @@ export default function TipCalculator() {
 
         <button
           type='submit'
-          className='w-full bg-[hsl(183,100%,15%)] text-white py-2 rounded mt-4'
+          className='w-full bg-[hsl(183,100%,15%)] text-white py-3 rounded mt-4 
+             text-lg tracking-wide font-bold'
         >
           Calculate
         </button>
@@ -102,7 +106,8 @@ export default function TipCalculator() {
 
         <button
           onClick={handleReset}
-          className='bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] font-bold rounded p-2'
+          className='bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] 
+             font-bold text-lg tracking-wide rounded p-3'
         >
           RESET
         </button>
@@ -116,24 +121,32 @@ export default function TipCalculator() {
 function InputField({ label, icon, register, error }) {
   return (
     <div className='mb-8'>
-      <label className='text-sm text-[hsl(186,14%,43%)] font-semibold'>
+      <label className='text-base tracking-wide text-[hsl(186,14%,43%)] font-semibold'>
         {label} *
       </label>
-      <div className='relative mt-1'>
+
+      <div className='relative mt-2'>
         <img
           src={icon}
           alt=''
-          className='absolute left-4 top-1/2 -translate-y-1/2 w-3'
+          className='absolute left-4 top-1/2 -translate-y-1/2 w-4'
         />
+
         <input
           type='number'
           placeholder='0'
           {...register}
-          className='w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-1 focus:ring-[hsl(172,67%,45%)]'
+          className='w-full bg-[hsl(189,41%,97%)] p-2 pl-12 pr-3 
+                     text-right text-lg tracking-wide
+                     text-[hsl(183,100%,15%)] rounded-md font-bold 
+                     outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]'
         />
       </div>
+
       {error && (
-        <span className='text-red-500 text-xs'>This is a required field</span>
+        <span className='text-red-500 text-xs tracking-wide'>
+          This is a required field
+        </span>
       )}
     </div>
   );
@@ -145,7 +158,7 @@ function TipButton({ tip, selectedTip, onSelect }) {
     <button
       type='button'
       onClick={onSelect}
-      className={`p-2 rounded font-bold transition ${
+      className={`p-3 rounded-md font-bold text-lg tracking-wide transition ${
         isActive
           ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
           : "bg-[hsl(183,100%,15%)] text-white hover:bg-[rgb(38_192_171_/50%)] hover:text-[rgb(0,73,77)]"
@@ -158,12 +171,13 @@ function TipButton({ tip, selectedTip, onSelect }) {
 
 function ResultRow({ label, value }) {
   return (
-    <div className='flex justify-between mb-8'>
+    <div className='flex justify-between mb-10'>
       <div>
-        <p>{label}</p>
-        <p className='text-sm text-gray-400'>/ person</p>
+        <p className='text-lg tracking-wide font-semibold'>{label}</p>
+        <p className='text-sm tracking-wide text-gray-400'>/ person</p>
       </div>
-      <p className='text-3xl font-bold text-[hsl(172,67%,45%)]'>
+
+      <p className='text-4xl tracking-wide font-bold text-[hsl(172,67%,45%)]'>
         ${value.toFixed(2)}
       </p>
     </div>
