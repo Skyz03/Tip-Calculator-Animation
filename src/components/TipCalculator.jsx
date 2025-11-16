@@ -117,7 +117,7 @@ function InputField({ label, icon, register, error }) {
   return (
     <div className='mb-8'>
       <label className='text-sm text-[hsl(186,14%,43%)] font-semibold'>
-        {label}
+        {label} *
       </label>
       <div className='relative mt-1'>
         <img
@@ -132,7 +132,9 @@ function InputField({ label, icon, register, error }) {
           className='w-full bg-[hsl(189,41%,97%)] p-1 pl-10 pr-3 text-right text-[hsl(183,100%,15%)] rounded-sm font-bold outline-none focus:ring-1 focus:ring-[hsl(172,67%,45%)]'
         />
       </div>
-      {error && <span className='text-red-500 text-xs'>Required field</span>}
+      {error && (
+        <span className='text-red-500 text-xs'>This is a required field</span>
+      )}
     </div>
   );
 }
