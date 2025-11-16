@@ -17,7 +17,6 @@ export default function TipCalculator() {
     formState: { errors },
   } = useForm();
 
-  // on form submit
   const onSubmit = (data) => {
     const people = Number(data.people);
     const bill = Number(data.bill);
@@ -43,7 +42,6 @@ export default function TipCalculator() {
   return (
     <div className='flex flex-col md:flex-row gap-8 w-full max-w-[700px] bg-white text-black rounded-3xl p-8'>
       <form onSubmit={handleSubmit(onSubmit)} className='w-full md:w-1/2'>
-        {/* Bill */}
         <InputField
           label='Bill'
           icon={dollarIcon}
@@ -51,9 +49,8 @@ export default function TipCalculator() {
           error={errors.bill}
         />
 
-        {/* Tip Options */}
         <div className='mb-8'>
-          <label className='text-sm text-[hsl(186,14%,43%)] font-semibold'>
+          <label className='text-sm text-neutral-gray font-semibold'>
             Select Tip %
           </label>
 
@@ -72,15 +69,16 @@ export default function TipCalculator() {
               {...register("customTip")}
               placeholder='Custom'
               onFocus={() => setSelectedTip(null)}
-              className='p-3 text-lg tracking-wide rounded-md font-bold 
-             text-[hsl(183,100%,15%)] text-center 
-             bg-[hsl(189,41%,97%)] outline-none 
-             focus:ring-2 focus:ring-[hsl(172,67%,45%)]'
+              className='
+                p-3 text-lg tracking-wide rounded-md font-bold
+                text-primary text-center
+                bg-neutral-light outline-none
+                focus:ring-2 focus:ring-accent
+              '
             />
           </div>
         </div>
 
-        {/* People */}
         <InputField
           label='Number of People'
           icon={personIcon}
@@ -90,15 +88,17 @@ export default function TipCalculator() {
 
         <button
           type='submit'
-          className='w-full bg-[hsl(183,100%,15%)] text-white py-3 rounded mt-4 
-             text-lg tracking-wide font-bold'
+          className='
+            w-full bg-primary text-white py-3 rounded mt-4 
+            text-lg tracking-wide font-bold 
+            hover:bg-hover-accent-light hover:text-hover-dark-text hover:cursor-pointer
+          '
         >
           Calculate
         </button>
       </form>
 
-      {/* Results */}
-      <div className='flex flex-col justify-between w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-8 rounded-xl'>
+      <div className='flex flex-col justify-between w-full md:w-1/2 bg-primary text-white p-8 rounded-xl'>
         <div>
           <ResultRow label='Tip Amount' value={tipPerPerson} />
           <ResultRow label='Total' value={totalPerPerson} />
@@ -106,8 +106,10 @@ export default function TipCalculator() {
 
         <button
           onClick={handleReset}
-          className='bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] 
-             font-bold text-lg tracking-wide rounded p-3'
+          className='
+            bg-accent text-primary font-bold text-lg tracking-wide 
+            rounded p-3 hover:bg-neutral-pale hover:cursor-pointer
+          '
         >
           RESET
         </button>
@@ -121,7 +123,7 @@ export default function TipCalculator() {
 function InputField({ label, icon, register, error }) {
   return (
     <div className='mb-8'>
-      <label className='text-base tracking-wide text-[hsl(186,14%,43%)] font-semibold'>
+      <label className='text-base tracking-wide text-neutral-gray font-semibold uppercase'>
         {label} *
       </label>
 
@@ -136,10 +138,12 @@ function InputField({ label, icon, register, error }) {
           type='number'
           placeholder='0'
           {...register}
-          className='w-full bg-[hsl(189,41%,97%)] p-2 pl-12 pr-3 
-                     text-right text-lg tracking-wide
-                     text-[hsl(183,100%,15%)] rounded-md font-bold 
-                     outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)]'
+          className='
+            w-full bg-neutral-light p-2 pl-12 pr-3 
+            text-right text-lg tracking-wide
+            text-primary rounded-md font-bold 
+            outline-none focus:ring-2 focus:ring-accent
+          '
         />
       </div>
 
@@ -154,15 +158,19 @@ function InputField({ label, icon, register, error }) {
 
 function TipButton({ tip, selectedTip, onSelect }) {
   const isActive = selectedTip === tip;
+
   return (
     <button
       type='button'
       onClick={onSelect}
-      className={`p-3 rounded-md font-bold text-lg tracking-wide transition ${
-        isActive
-          ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
-          : "bg-[hsl(183,100%,15%)] text-white hover:bg-[rgb(38_192_171_/50%)] hover:text-[rgb(0,73,77)]"
-      }`}
+      className={`
+        p-3 rounded-md font-bold text-lg tracking-wide transition hover:cursor-pointer
+        ${
+          isActive
+            ? "bg-accent text-primary "
+            : "bg-primary text-white hover:bg-hover-accent-light hover:text-hover-dark-text"
+        }
+      `}
     >
       {tip}%
     </button>
@@ -174,10 +182,10 @@ function ResultRow({ label, value }) {
     <div className='flex justify-between mb-10'>
       <div>
         <p className='text-lg tracking-wide font-semibold'>{label}</p>
-        <p className='text-sm tracking-wide text-gray-400'>/ person</p>
+        <p className='text-sm tracking-wide text-neutral-gray'>/ person</p>
       </div>
 
-      <p className='text-4xl tracking-wide font-bold text-[hsl(172,67%,45%)]'>
+      <p className='text-4xl tracking-wide font-bold text-accent'>
         ${value.toFixed(2)}
       </p>
     </div>

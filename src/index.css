@@ -2,17 +2,26 @@
 
 @theme {
   --font-asimovian: "Asimovian", sans-serif;
+
+  /* Colors — automatically create bg-accent, text-accent, ring-accent, etc. */
+  --color-primary: hsl(183, 100%, 15%);
+  --color-accent: hsl(172, 67%, 45%);
+  --color-neutral-light: hsl(189, 41%, 97%);
+  --color-neutral-gray: hsl(186, 14%, 43%);
+  --color-neutral-pale: hsl(185, 41%, 84%);
+
+  /* Extra hover colors */
+  --color-hover-accent-light: rgb(38 192 171 / 50%);
+  --color-hover-dark-text: rgb(0 73 77);
 }
 
-
-/* Remove number input arrows in Chrome, Safari, Edge */
+/* Remove number arrows */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Remove number input arrows in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }
