@@ -1,41 +1,63 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import dollarIcon from "../assets/images/icon-dollar.svg";
 import personIcon from "../assets/images/icon-person.svg";
 
-// 
 export default function TipCalculator() {
   const tipOptions = [5, 10, 15, 25, 50];
   const [selectedTip, setSelectedTip] = useState(null);
 
+  const [tipPerPerson, setTipPerPerson] = useState(0);
+  const [totalPerPerson, setTotalPerPerson] = useState(0);
+
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    reset,
+    formState: { errors },
   } = useForm();
-  // when user submit data
+
+  // on form submit
   const onSubmit = (data) => {
-    const tip = selectedTip !== null ? selectedTip : Number(data.customTip) || 0;
-    console.log("Bill:", data.bill);
-    console.log("Custom Tip:", tip);
-    console.log("People:", data.people);
-    console.log("Selected Tip:", selectedTip);
+    const people = Number(data.people);
+    const bill = Number(data.bill);
+    const tipPercent =
+      selectedTip !== null ? selectedTip : Number(data.customTip) || 0;
+
+    if (people > 0) {
+      const tipAmount = (bill * (tipPercent / 100)) / people;
+      const totalAmount = bill / people + tipAmount;
+
+      setTipPerPerson(tipAmount);
+      setTotalPerPerson(totalAmount);
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setSelectedTip(null);
+    setTipPerPerson(0);
+    setTotalPerPerson(0);
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 w-full max-w-[500px] sm:max-w-[600px] md:max-w-[700px]  bg-white text-black rounded-3xl p-7 pl-8 pr-8 ">
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-1/2">
-        {/* Bill seciton*/}
+    <div className='flex flex-col md:flex-row gap-8 w-full max-w-[700px] bg-white text-black rounded-3xl p-8'>
+      <form onSubmit={handleSubmit(onSubmit)} className='w-full md:w-1/2'>
+        {/* Bill */}
         <InputField
-          label={"Bill"}
+          label='Bill'
           icon={dollarIcon}
           register={register("bill", { required: true, min: 1 })}
           error={errors.bill}
         />
-        {/* Tip Select Buttons section */}
-        <div className="mb-8">
-          <label className="text-sm text-[hsl(186,14%,43%)] font-semibold">Select Tip %</label>
-          <div className="grid grid-cols-3 gap-3 my-3">
+
+        {/* Tip Options */}
+        <div className='mb-8'>
+          <label className='text-sm text-[hsl(186,14%,43%)] font-semibold'>
+            Select Tip %
+          </label>
+
+          <div className='grid grid-cols-3 gap-3 my-3'>
             {tipOptions.map((tip) => (
               <TipButton
                 key={tip}
@@ -44,6 +66,7 @@ export default function TipCalculator() {
                 onSelect={() => setSelectedTip(tip)}
               />
             ))}
+
             <input
               type='number'
               {...register("customTip")}
@@ -53,27 +76,36 @@ export default function TipCalculator() {
             />
           </div>
         </div>
-        {/* Number of People section */}
+
+        {/* People */}
         <InputField
-          label={"Number of People"}
+          label='Number of People'
           icon={personIcon}
           register={register("people", { required: true, min: 1 })}
           error={errors.people}
         />
 
-        <button type="submit">Calculate. </button>
+        <button
+          type='submit'
+          className='w-full bg-[hsl(183,100%,15%)] text-white py-2 rounded mt-4'
+        >
+          Calculate
+        </button>
       </form>
-      {/* result of tip calculator */}
-      <div className="flex flex-col justify-between w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-8 rounded-xl">
+
+      {/* Results */}
+      <div className='flex flex-col justify-between w-full md:w-1/2 bg-[hsl(183,100%,15%)] text-white p-8 rounded-xl'>
         <div>
-          <ResultRow
-            label={"Tip Amount"}
-            value={3} />
-          <ResultRow
-            label={"Total"}
-            value={5} />
+          <ResultRow label='Tip Amount' value={tipPerPerson} />
+          <ResultRow label='Total' value={totalPerPerson} />
         </div>
-        <button className="bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] font-bold rounded cursor-pointer p-2">RESET</button>
+
+        <button
+          onClick={handleReset}
+          className='bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] font-bold rounded p-2'
+        >
+          RESET
+        </button>
       </div>
     </div>
   );
@@ -111,10 +143,11 @@ function TipButton({ tip, selectedTip, onSelect }) {
     <button
       type='button'
       onClick={onSelect}
-      className={`p-2 rounded font-bold transition ${isActive
-        ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
-        : "bg-[hsl(183,100%,15%)] text-white hover:bg-[rgb(38_192_171_/50%)] hover:text-[rgb(0,73,77)]"
-        }`}
+      className={`p-2 rounded font-bold transition ${
+        isActive
+          ? "bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)]"
+          : "bg-[hsl(183,100%,15%)] text-white hover:bg-[rgb(38_192_171_/50%)] hover:text-[rgb(0,73,77)]"
+      }`}
     >
       {tip}%
     </button>
