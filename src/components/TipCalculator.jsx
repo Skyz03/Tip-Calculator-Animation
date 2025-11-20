@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import dollarIcon from "../assets/images/icon-dollar.svg";
 import personIcon from "../assets/images/icon-person.svg";
@@ -10,27 +10,36 @@ export default function TipCalculator() {
   const [tipPerPerson, setTipPerPerson] = useState(0);
   const [totalPerPerson, setTotalPerPerson] = useState(0);
 
+
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    const people = Number(data.people);
-    const bill = Number(data.bill);
-    const tipPercent =
-      selectedTip !== null ? selectedTip : Number(data.customTip) || 0;
+  const watchBill = watch("bill");
+  const watchPeople = watch("people");
+  const watchCustomTip = watch("customTip");
 
-    if (people > 0) {
+  // Auto calculate on change
+  useEffect(() => {
+    const bill = Number(watchBill);
+    const people = Number(watchPeople);
+    const tipPercent =
+      selectedTip !== null ? selectedTip : Number(watchCustomTip) || 0;
+
+    if (bill > 0 && people > 0) {
       const tipAmount = (bill * (tipPercent / 100)) / people;
       const totalAmount = bill / people + tipAmount;
 
       setTipPerPerson(tipAmount);
       setTotalPerPerson(totalAmount);
     }
-  };
+  }, [watchBill, watchPeople, watchCustomTip, selectedTip]);
+
+  const onSubmit = () => {}; // no longer needed, but kept for react-hook-form
 
   const handleReset = () => {
     reset();
@@ -39,6 +48,7 @@ export default function TipCalculator() {
     setTotalPerPerson(0);
   };
 
+ 
   return (
     <div className='flex flex-col md:flex-row gap-8 w-full max-w-[700px] bg-white text-black rounded-3xl p-8'>
       <form onSubmit={handleSubmit(onSubmit)} className='w-full md:w-1/2'>
@@ -64,6 +74,7 @@ export default function TipCalculator() {
               />
             ))}
 
+            {/* custom tip */}
             <input
               type='number'
               {...register("customTip")}
@@ -167,7 +178,7 @@ function TipButton({ tip, selectedTip, onSelect }) {
         p-3 rounded-md font-bold text-lg tracking-wide transition hover:cursor-pointer
         ${
           isActive
-            ? "bg-accent text-primary "
+            ? "bg-accent text-primary"
             : "bg-primary text-white hover:bg-hover-accent-light hover:text-hover-dark-text"
         }
       `}
