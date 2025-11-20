@@ -1,6 +1,6 @@
 # 🌟 FEM – Tip Calculator App
 
-This is my solution to the **Tip Calculator App** challenge on **Frontend Mentor**.  
+This is solution to the **Tip Calculator App** challenge on **Frontend Mentor**.  
 The app helps users calculate the **tip amount per person** and the **total amount per person** based on the bill, selected tip percentage, or a custom tip value.
 
 ---
@@ -16,6 +16,7 @@ The app helps users calculate the **tip amount per person** and the **total amou
 -  Clean UI built with **Tailwind CSS**
 
 ---
+
 
 ##  Built With
 
